@@ -8,10 +8,10 @@ const librosController = require("../controllers/librosController");
 
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, 'uploads')
+    callBack(null, './public/images')
   },
   filename: (req, file, callBack) => {
-    callBack(null, `public/images${file.originalname}`)
+    callBack(null, `img${file.originalname}`)
   }
 })
 const upload = multer({ storage: storage })
@@ -19,7 +19,7 @@ const upload = multer({ storage: storage })
 router.get("/", librosController.index);
 // router.post("/", cargar.single("archivo"), librosController.guardar); // 'archivo' es el nombre del form
 
-router.post('/file', upload.single('file'), (req, res, next) => {
+router.post("/file", upload.single('file'), (req, res, next) => {
   const file = req.file;
 
   console.log(file.filename);
