@@ -2,10 +2,10 @@ var express = require("express");
 var router = express.Router();
 var multer = require("multer");
 
-
+////**********mys controllers */
 const librosController = require("../controllers/librosController");
 
-
+/////*** multer config ///////////////////////////////////// */
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
     callBack(null, './public/images')
@@ -15,24 +15,10 @@ const storage = multer.diskStorage({
   }
 })
 const upload = multer({ storage: storage })
+///// ////////////////////////////////////////////////////////
 
 router.get("/", librosController.index);
-// router.post("/", cargar.single("archivo"), librosController.guardar); // 'archivo' es el nombre del form
-
-router.post("/file", upload.single('file'), (req, res, next) => {
-  const file = req.file;
-
-  console.log(file.filename);
-  console.log(req.file);
-  
-  if (!file) {
-    const error = new Error('No File')
-    error.httpStatusCode = 400
-    return next(error)
-  }
-  res.send(file);
-
-});
+router.post("/file", upload.single('file'), librosController.add);
 
 router.post('/multipleFiles', upload.array('files'), (req, res, next) => {
   const files = req.files;

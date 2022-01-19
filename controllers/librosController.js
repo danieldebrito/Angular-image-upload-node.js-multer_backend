@@ -7,10 +7,20 @@ module.exports = {
       res.json({libros: datos });
     });
   },
-  guardar: function (req, res) {
-    element.set(conexion, req.body,req.file, function (err) {      
-      res.redirect('/libros/');
-    });
+  add: function (req, res) {
+    element.set(conexion, req.file, req.body, function (err) {      
+      const file = req.file;
 
+      console.log(req.body);
+
+      
+      if (!file) {
+        const error = new Error('No File')
+        error.httpStatusCode = 400
+        return next(error)
+      }
+      res.send(file);
+    
+    });
   }
 };
