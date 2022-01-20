@@ -12,6 +12,7 @@ module.exports = {
       const file = req.file;
 
       console.log(req.body);
+      console.log(req.file);
 
       
       if (!file) {
