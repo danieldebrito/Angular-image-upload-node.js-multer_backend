@@ -6,8 +6,8 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 // **************  mys requires routes *************** //
-var indexRouter = require('./routes/index');
-var librosRouter = require('./routes/libros');
+var indexRouter = require('./routes/indexRoutes');
+var librosRouter = require('./routes/librosRoutes');
 /////////////////////////////////////////////////////////
 
 var app = express();

@@ -1,5 +1,5 @@
 var conexion = require("../conexionSQL/conection");
-var element = require("../model/libro");
+var element = require("../model/libroModel");
 
 module.exports = {
   index: function (req, res) {
@@ -11,8 +11,8 @@ module.exports = {
     element.set(conexion, req.file, req.body, function (err) {      
       const file = req.file;
 
-      console.log(req.body);
-      console.log(req.file);
+      // console.log(req.body);
+      // console.log(req.file);
 
       
       if (!file) {
